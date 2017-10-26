@@ -1,4 +1,14 @@
 <?php
+
+/*
+ * This file is part of the Composer Silent Command Plugin project.
+ *
+ * (c) Stephan Jorek <stephan.jorek@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Sjorek\Composer\SilentCommand;
 
 use Composer\Composer;
@@ -16,7 +26,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Plugin implements PluginInterface, EventSubscriberInterface
 {
-
     /**
      * @var Composer
      */
@@ -45,7 +54,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
     {
         return array(
             PluginEvents::COMMAND => array(
-                array('onExecuteCommand', 0)
+                array('onExecuteCommand', 0),
             ),
         );
     }
@@ -64,4 +73,3 @@ class Plugin implements PluginInterface, EventSubscriberInterface
         );
     }
 }
-
