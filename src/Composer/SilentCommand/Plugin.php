@@ -41,7 +41,7 @@ class Plugin implements PluginInterface, EventSubscriberInterface
      * {@inheritDoc}
      * @see \Composer\EventDispatcher\EventSubscriberInterface::getSubscribedEvents()
      */
-    public function getSubscribedEvents()
+    public static function getSubscribedEvents()
     {
         return array(
             PluginEvents::COMMAND => array(
