@@ -1,0 +1,36 @@
+{
+    "name": "sjorek/composer-silent-command-plugin",
+    "description": "A composer-plugin to run commands silently, without tampering with their exit-code.",
+    "type": "composer-plugin",
+    "require": {
+        "composer-plugin-api": "^1.1"
+    },
+    "require-dev": {
+        "composer/composer": "^1.5",
+        "friendsofphp/php-cs-fixer": "^2.7",
+        "phpunit/phpunit": "^6.4"
+    },
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Stephan Jorek",
+            "email": "stephan.jorek@gmail.com"
+        }
+    ],
+    "scripts": {
+        "composer-silent-command-plugin:build": [
+            "@composer-silent-command-plugin:clean",
+            "@composer-silent-command-plugin:cs-lint",
+            "@composer-silent-command-plugin:test-coverage"
+        ],
+        "composer-silent-command-plugin:clean": [
+            "[ -d coverage ] && rm -r coverage || true"
+        ],
+        "composer-silent-command-plugin:test": "phpunit -v --exclude-group=large",
+        "composer-silent-command-plugin:test-all": "phpunit -v",
+        "composer-silent-command-plugin:test-large": "phpunit -v --group=large",
+        "composer-silent-command-plugin:test-coverage": "phpunit -v --coverage-html coverage",
+        "composer-silent-command-plugin:cs-lint": "php-cs-fixer fix --diff --stop-on-violation --verbose --dry-run",
+        "composer-silent-command-plugin:cs-fix": "php-cs-fixer fix -vv || true"
+    }
+}

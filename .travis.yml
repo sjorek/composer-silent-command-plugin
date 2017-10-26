@@ -1,0 +1,52 @@
+language: php
+
+git:
+  depth: 50
+
+matrix:
+  include:
+    - php: 7.0
+    - php: 7.1
+      env: LINT=true
+    - php: 7.2
+    - php: nightly
+      env: NIGHTLY=true
+  allow_failures:
+    - php: nightly
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+    - $HOME/.php-cs-fixer
+
+install:
+- phpenv config-rm xdebug.ini || true
+- travis_retry composer self-update
+- if [[ $NIGHTLY = true ]]; then
+    composer remove --dev friendsofphp/php-cs-fixer;
+    composer validate;
+  fi
+- travis_retry composer install --no-interaction
+- travis_retry composer dump-autoload --optimize
+
+script:
+- if [[ $LINT = true ]]; then
+    composer validate;
+    composer composer-silent-command-plugin:cs-lint;
+  fi
+- if [[ $(( $TRAVIS_BUILD_NUMBER % 10 )) = 0 ]]; then
+    composer composer-silent-command-plugin:test-all;
+  else
+    composer composer-silent-command-plugin:test;
+  fi
+
+sudo: false
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+  slack:
+    on_success: always
+    on_failure: always
+    secure: RS7xZnvQbTSvcjV4zz9y+H2vA8V+3KJlP/3gOgGtsX2C76aZfic685YG/FbLl7S/Qhx6ofzFde1iGzc7YFLBiXm6172qL4w79qcCI1qWYx7cAMT9/00+EokWzlKs+V53+RUMvW+quHgLnq3N/74+lAxOQx0Wcyr/pBhhioh67x+qhMVq+zaqR2szSoG+2QWnnfElHuP0615bMwmjEy7dP9vUFN22INIhYW0SxRN0+fQrCfOSWZ+EI2j07OYhR61i0bkn1oWZgrrdlOUGYBshl8l0hMjaW3P/LIQ4iL42Ce6bAa4UhxK5qEym224J183O8tMNn3EnpLTPB4467svQrzT3PU7vAeVlP8rv4Lyffu90bqu8L9OGYMV1SOl8LC3uGRuPFVZTyfT51F0GNGgJOk+GkFgow3BYLBCEndzNXQOUpUJRrXJhF1Eqjyr6r2RI1SZKtLIr58pFcwYt246HWJ2+ucrwETNBuU9mXSGc9wsYfYBtNmX286C33audROz2yqkzqOUewJaDltQdUE9oJi7o9xUzBwqSwHwl8fIBSfkTfUmEj0YVs8nb7pNwR8SqCR8CjFZw6Zk7qLE2Q5hr0MeXwV4NyO3EpF/R7xigKU44TQ4jIhaYsB2QcJNU9gVtfatQTlQWJD8led9+Q43m/2/tPf/pMy1s42o3RuSrwfM=
