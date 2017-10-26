@@ -1,7 +1,30 @@
 {
     "name": "sjorek/composer-silent-command-plugin",
     "description": "A composer-plugin to run commands silently, without tampering with their exit-code.",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Stephan Jorek",
+            "email": "stephan.jorek@gmail.com"
+        }
+    ],
     "type": "composer-plugin",
+    "keywords": [
+        "shell",
+        "php",
+        "composer",
+        "composer-plugin"
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sjorek\\Composer\\SilentCommand\\" : "src/Composer/SilentCommand"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sjorek\\Composer\\SilentCommand\\Tests\\" : "tests/Composer/SilentCommand/Tests"
+        }
+    },
     "require": {
         "composer-plugin-api": "^1.1"
     },
@@ -10,13 +33,9 @@
         "friendsofphp/php-cs-fixer": "^2.7",
         "phpunit/phpunit": "^6.4"
     },
-    "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "Stephan Jorek",
-            "email": "stephan.jorek@gmail.com"
-        }
-    ],
+    "extra" : {
+        "class" : "Sjorek\\Composer\\SilentCommand\\Plugin"
+    },
     "scripts": {
         "composer-silent-command-plugin:build": [
             "@composer-silent-command-plugin:clean",
