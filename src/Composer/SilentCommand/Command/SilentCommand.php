@@ -31,7 +31,7 @@ class SilentCommand extends BaseCommand
     {
         $this
             ->setName('silent')
-            ->setDescription('Allows running commands silently, without tampering their exit-code.')
+            ->setDescription('Allows running commands silently, without tampering with their exit-code.')
             ->setDefinition(array(
                 new InputArgument('command-name', InputArgument::REQUIRED, ''),
                 new InputArgument('args', InputArgument::IS_ARRAY | InputArgument::OPTIONAL, ''),
