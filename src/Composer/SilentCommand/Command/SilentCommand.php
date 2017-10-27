@@ -39,8 +39,8 @@ class SilentCommand extends BaseCommand
             ->setHelp(
                 <<<EOT
 Use this command as a wrapper to run other Composer commands
-super silently, without tampering their exit-code. The only
-way to get output, is to enable the debug option.
+super silently, without tampering with their exit-code. The
+only way to get output, is to enable the debug option.
 
 EOT
             )

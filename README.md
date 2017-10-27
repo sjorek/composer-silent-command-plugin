@@ -4,23 +4,49 @@ A [composer](http://getcomposer.org)-plugin to run commands silently, without ta
 
 ## Installation
 
-### Method 1: globally, so it is available in all packages
+### Method 1: as a package requirement (recommended!)
+
+```bash
+php composer.phar require [--dev] sjorek/composer-silent-command-plugin
+```
+
+
+### Method 2: globally, so it is available in all packages
 
 ```bash
 php composer.phar global require sjorek/composer-silent-command-plugin
 ```
 
 
-### Method 2: as a package requirement
-
-```bash
-php composer.phar require --dev sjorek/composer-silent-command-plugin
-```
-
-
 ## Documentation
 
-T.B.D.
+```bash
+$ php composer.phar help silent
+Usage:
+  silent <command-name> [<args>]...
+
+Arguments:
+  command-name                   
+  args                           
+
+Options:
+  -h, --help                     Display this help message
+  -q, --quiet                    Do not output any message
+  -V, --version                  Display this application version
+      --ansi                     Force ANSI output
+      --no-ansi                  Disable ANSI output
+  -n, --no-interaction           Do not ask any interactive question
+      --profile                  Display timing and memory usage information
+      --no-plugins               Whether to disable plugins.
+  -d, --working-dir=WORKING-DIR  If specified, use the given directory as working directory.
+  -v|vv|vvv, --verbose           Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+Help:
+  Use this command as a wrapper to run other Composer commands
+  super silently, without tampering with their exit-code. The
+  only way to get output, is to enable the debug option.
+  
+```
 
 
 ## Contributing
