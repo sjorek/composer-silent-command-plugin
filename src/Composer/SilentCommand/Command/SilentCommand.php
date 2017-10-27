@@ -78,7 +78,9 @@ EOT
 
         // create new input without "silent" command prefix
         $input = new StringInput(preg_replace('{\bs(?:i(?:l(?:e(?:n(?:t)?)?)?)?)?\b}', '', $input->__toString(), 1));
-        $this->getApplication()->resetComposer();
+
+        // resetting composer should not be needed ...
+        // $this->getApplication()->resetComposer();
 
         // Allow debugging
         if (($output->getVerbosity() & OutputInterface::VERBOSITY_DEBUG) !== OutputInterface::VERBOSITY_DEBUG) {
