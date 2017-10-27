@@ -12,19 +12,18 @@
 namespace Sjorek\Composer\SilentCommand;
 
 use Composer\Composer;
-use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\IO\IOInterface;
-use Composer\Plugin\CommandEvent;
+use Composer\Plugin\Capable;
+use Composer\Plugin\Capability\CommandProvider;
 use Composer\Plugin\PluginInterface;
-use Composer\Plugin\PluginEvents;
-use Symfony\Component\Console\Output\OutputInterface;
+use Sjorek\Composer\SilentCommand\Command\SilentCommand;
 
 /**
  * Silent Command Composer Plugin
  *
  * @author Stephan Jorek <stephan.jorek@gmail.com>
  */
-class Plugin implements PluginInterface, EventSubscriberInterface
+class Plugin implements PluginInterface, Capable, CommandProvider
 {
     /**
      * @var Composer
@@ -48,28 +47,23 @@ class Plugin implements PluginInterface, EventSubscriberInterface
 
     /**
      * {@inheritDoc}
-     * @see \Composer\EventDispatcher\EventSubscriberInterface::getSubscribedEvents()
+     * @see \Composer\Plugin\Capable::getCapabilities()
      */
-    public static function getSubscribedEvents()
+    public function getCapabilities()
     {
         return array(
-            PluginEvents::COMMAND => array(
-                array('onExecuteCommand', 0),
-            ),
+            CommandProvider::class => static::class,
         );
     }
 
     /**
-     * @param CommandEvent $event
+     * {@inheritDoc}
+     * @see \Composer\Plugin\Capability\CommandProvider::getCommands()
      */
-    public function onExecuteCommand(CommandEvent $event)
+    public function getCommands()
     {
-        $event->getOutput()->writeln(
-            sprintf(
-                '<info>is silent? => %d</info>',
-                $event->getInput()->hasParameterOption('-qq', true)
-            ),
-            OutputInterface::OUTPUT_NORMAL | OutputInterface::VERBOSITY_QUIET
+        return array(
+            new SilentCommand(),
         );
     }
 }
