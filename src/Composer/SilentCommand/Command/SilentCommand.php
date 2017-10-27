@@ -50,9 +50,14 @@ EOT
     /**
      * {@inheritDoc}
      * @see \Symfony\Component\Console\Command\Command::run()
+     * @throws \RuntimeException if the command runs interactively
      */
     public function run(InputInterface $input, OutputInterface $output)
     {
+        if ($input->isInteractive()) {
+            throw new \RuntimeException('The silent command must not be run interactively.');
+        }
+
         // extract real command name
         $tokens = preg_split('{\s+}', $input->__toString());
         $args = array();
