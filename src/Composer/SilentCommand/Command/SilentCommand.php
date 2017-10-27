@@ -19,6 +19,7 @@ use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
+ * @author Stephan Jorek <stephan.jorek@gmail.com>
  * @author Jordi Boggiano <j.boggiano@seld.be>
  */
 class SilentCommand extends BaseCommand
