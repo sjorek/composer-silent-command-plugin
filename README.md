@@ -39,7 +39,8 @@ Options:
       --profile                  Display timing and memory usage information
       --no-plugins               Whether to disable plugins.
   -d, --working-dir=WORKING-DIR  If specified, use the given directory as working directory.
-  -v|vv|vvv, --verbose           Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+  -v|vv|vvv, --verbose           Increase the verbosity of messages: 1 for normal output,
+                                 2 for more verbose output and 3 for debug
 
 Help:
   Use this command as a wrapper to run other Composer commands
