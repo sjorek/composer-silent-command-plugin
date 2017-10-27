@@ -1,6 +1,7 @@
 {
     "name": "sjorek/composer-silent-command-plugin",
     "description": "A composer-plugin to run commands silently, without tampering with their exit-code.",
+    "homepage" : "https://sjorek.github.io/composer-silent-command-plugin/",
     "license": "BSD-3-Clause",
     "authors": [
         {
