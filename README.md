@@ -65,7 +65,6 @@ complementing this composer-plugin.
 ### Status
 
 [![Build Status](https://img.shields.io/travis/sjorek/composer-silent-command-plugin.svg)](https://travis-ci.org/sjorek/composer-silent-command-plugin)
-[![Dependency Status](https://img.shields.io/gemnasium/sjorek/composer-silent-command-plugin.svg)](https://gemnasium.com/github.com/sjorek/composer-silent-command-plugin)
 
 
 ### GitHub
