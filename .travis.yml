@@ -40,7 +40,7 @@ script:
     composer composer-silent-command-plugin:test;
   fi
 - if [[ $CHECK_SECURITY = true ]]; then
-    composer composer-silent-command-plugin:security-check;
+    composer composer-silent-command-plugin:security-check-bugfix-for-travis;
   fi
 
 
