@@ -7,7 +7,7 @@ matrix:
   include:
     - php: 7.0
     - php: 7.1
-      env: LINT=true
+      env: LINT=true CHECK_SECURITY=true
     - php: 7.2
     - php: nightly
       env: NIGHTLY=true
@@ -39,6 +39,10 @@ script:
   else
     composer composer-silent-command-plugin:test;
   fi
+- if [[ $CHECK_SECURITY = true ]]; then
+    composer composer-silent-command-plugin:security-check;
+  fi
+
 
 sudo: false
 
